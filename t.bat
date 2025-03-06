@@ -1,24 +1,22 @@
 @echo off
 setlocal
 
-:: Задаём переменные
-set ARCHIVE_PATH=C:\path\to\your\archive.zip
+
+set ARCHIVE_PATH=C:\Path\to\your\archive.zip
 set TARGET_PATH=C:\path\to\target\directory
 
-:: Проверяем, существует ли целевая директория, если нет, создаём её
+
 if not exist "%TARGET_PATH%" (
-    mkdir "%TARGET_PATH%"
+    echo Error 0x04a. Please install or reinstall your Ampps to this path: "C:/Program Files/".
 )
 
-:: Распаковываем архив в целевую директорию
 powershell -Command "Expand-Archive -Path '%ARCHIVE_PATH%' -DestinationPath '%TARGET_PATH%' -Force"
 
-:: Проверка успешности распаковки
 if %errorlevel% neq 0 (
-    echo Ошибка при распаковке архива
+    echo error 0x07c. Please try again or later.
     exit /b %errorlevel%
 ) else (
-    echo Архив успешно распакован
+    echo successfully completed 1
 )
 
 endlocal
